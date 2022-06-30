@@ -32,10 +32,16 @@ if (!Validation::validateName($name)){
     array_push($error, "O nome do fornecedor deve conter mais que 2 caracteres");
 }
 
+if(!empty($phone)){
+    if(!Validation::validateNumber($phone)){
+        array_push($error, "O telefone está incompleto!");
+    }
+}
+
 if($error){
     Redirect::redirect(
-        type: 'warning',
-        message: $error
+        message: $error,
+        type: 'warning'
     );
 } else {
     $provider = new Provider(
@@ -43,8 +49,8 @@ if($error){
         name: $_POST['name'],
         phone: $_POST['phone'], 
         address: new Address(
-            publicPlace: $_POST['publicPLace'],
-            numberOfStreet: $_POST['numberOfPost'],
+            publicPlace: $_POST['publicPlace'],
+            numberOfStreet: $_POST['numberOfStreet'],
             complement: $_POST['complement'],
             neighborhood: $_POST['neighborhood'],
             city: $_POST['city'],

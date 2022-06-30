@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    <fieldset class="p-4 m-5 border border-blue-400 text-">
+    <fieldset class="p-4 m-5 border border-blue-400">
         <legend>Cadastro de Fornecedor</legend>
 
         <form action="../Controller/Provider.php" method="POST">
-            <fieldset class="flex flex-col justify-center p-4 m-4 border border-blue-400">
+            <fieldset class="p-4 m-4 border border-blue-400">
                 <legend>Dados do Fornecedor</legend>
-                <section class="columns-2 ">
+                <section class="columns-2">
                     <article>
                         <label for="cnpj">CNPJ do Fornecedor</label>
                         <input type="text" id="cnpj" name="cnpj" class="border border-blue-400" required minlength="14" maxlength="14">
@@ -27,15 +27,15 @@
                     </article>
                     <article>
                         <label for="phone">Telefone</label>
-                        <input type="text" id="phone" name="phone" class="border border-blue-400" required minlength="8" maxlength="11">
+                        <input type="text" id="phone" name="phone" class="border border-blue-400">
                     </article>
                 </section>
-            </fieldset>        
-            <fieldset class="flex flex-col justify-center p-4 border border-blue-400">
+            </fieldset>
+            <fieldset class="p-4 m-4 border border-blue-400">
                 <legend>Endereço do Fornecedor</legend>
-                <section class="columns-2 ">
+                <section class="columns-2">
                     <article>
-                        <label for="publicPlace">traduzir</label>
+                        <label for="publicPlace">Logradouro</label>
                         <input type="text" id="publicPlace" name="publicPlace" class="border border-blue-400" required minlength="3">
                     </article>
                     <article>
@@ -49,7 +49,7 @@
                         <input type="text" id="complement" name="complement" class="border border-blue-400">
                     </article>
                     <article>
-                        <label for="neighborhood">traduzir</label>
+                        <label for="neighborhood">Bairro</label>
                         <input type="text" id="neighborhood" name="neighborhood" class="border border-blue-400">
                     </article>
                 </section>
@@ -64,10 +64,11 @@
                     </article>
                 </section>
             </fieldset>
+            <article class="flex justify-center mt-4">
+                <button type="submit" class="p-4 text-white bg-blue-700 rounded">Cadastrar</button>
+            </article>
         </form>
-        <article class="flex justify-center mt-4">
-            <button type="submit" class="p-4 text-white bg-blue-700 rounded">Cadastrar</button>
-        </article>
+
     </fieldset>
 </body>
 
