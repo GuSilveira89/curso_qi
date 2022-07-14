@@ -2,19 +2,21 @@
 
 namespace APP\Controller;
 
+use APP\Model\DAO\ProductDAO;
 use APP\Model\Product;
+use APP\Model\Provider;
 use APP\Utils\Redirect;
 use APP\Model\Validation;
-use APP\Model\Provider;
+use PDOException;
 
 require '../../vendor/autoload.php';
 
 if (empty($_POST)) {
     session_start();
-    // Redireciona o usuario
+    // Redirecionar o usuário
     Redirect::redirect(
         type: 'error',
-        message: "Requisição inválida!!!"
+        message: 'Requisição inválida!!!'
     );
 }
 
@@ -25,22 +27,22 @@ $provider = $_POST["provider"];
 
 $error = array();
 
-// array_unshift -> adicionar no inicio do array
-// array_push -> adicionar no final do array
+// array_unshift -> Adicionar no início do array
+// array_push -> Adicionar no final do array
 
-// array_shift -> Remove do inicio do array
+// array_shift -> Remove do início do array
 // array_pop -> Remove do final do array
 
 if (!Validation::validateName($productName)) {
-    array_push($error, "O nome do produto deve conter mais de 2 caracteres");
+    array_push($error, "O nome do produto deve conter mais de 2 caracteres!!!");
 }
 
 if (!Validation::validateNumber($productCostPrice)) {
-    array_push($error, "O preço de custo do produto deverá ser maior que zero!");
+    array_push($error, "O preço de custo do produto deverá ser maior que zero!!!");
 }
 
 if (!Validation::validateNumber($quantity)) {
-    array_push($error, "A quantidade de entrada deverá ser maior que zero!");
+    array_push($error, "A quantidade de entrada deverá ser maior que zero!!!");
 }
 
 if ($error) {
@@ -58,10 +60,27 @@ if ($error) {
         quantity: $quantity,
         provider: new Provider(
             cnpj: '00000/0001',
-            name: "Fornecedor padrão"
+            name: "Fornecedor Padrão"
         )
     );
-    Redirect::redirect(
-        message: "O produto $productName foi cadastrado com sucesso!"
-    );
+
+    //TODO Cadastrar no banco de dados
+    try {
+        $dao = new ProductDAO();
+        $result = $dao->insert($product);
+        if ($result) {
+            Redirect::redirect(
+                message: "O produto $productName foi cadastrado com sucesso!"
+            );
+        } else {
+            Redirect::redirect(
+                message: "Lamento, não foi possivel cadastrar o produto $productName",
+                type: 'error'
+            );
+        }
+    } catch (PDOException $e) {
+        // Redirect::redirect(message: "Houve um erro inesperado:" . $e->getMessage());
+        Redirect::redirect(message: "Houve um erro inesperado!",
+        type: 'error');
+    }
 }

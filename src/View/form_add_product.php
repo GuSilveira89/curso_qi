@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,6 @@
     <title>Loja de varejo - Cadastro de produtos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
     <form action="../controller/Product.php" method="POST">
         <fieldset class="p-4 m-5 border border-blue-400">
@@ -22,7 +22,7 @@
                     <input type="text" id="cost" name="cost" class="border border-blue-400" required min="1" max="1000">
                 </article>
             </section>
-            <section class="columns-2">
+            <section class="mt-4 columns-2">
                 <article>
                     <label for="quantity">Quantidade em estoque</label>
                     <input type="number" id="quantity" name="quantity" class="border border-blue-400" required min="1" max="1000">
@@ -42,5 +42,4 @@
         </fieldset>
     </form>
 </body>
-
 </html>

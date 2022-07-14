@@ -2,14 +2,17 @@
 
 namespace APP\Controller;
 
+use APP\Model\DAO\ProviderDAO;
+use APP\Model\DAO\AddressDAO;
 use APP\Model\Provider;
 use APP\Utils\Redirect;
 use APP\Model\Validation;
 use APP\Model\Address;
+use PDOException;
 
 require '../../vendor/autoload.php';
 
-if(empty($_POST)){
+if (empty($_POST)) {
     session_start();
     Redirect::redirect(
         type: 'error',
@@ -24,21 +27,17 @@ $address = $_POST['address'];
 
 $error = array();
 
-if (!Validation::validateName($cnpj)){
+if (!Validation::validateName($cnpj)) {
     array_push($error, "O CNPJ do fornecedor deve conter 14 caracteres");
 }
 
-if (!Validation::validateName($name)){
+if (!Validation::validateName($name)) {
     array_push($error, "O nome do fornecedor deve conter mais que 2 caracteres");
 }
 
-if(!empty($phone)){
-    if(!Validation::validateNumber($phone)){
-        array_push($error, "O telefone está incompleto!");
-    }
-}
 
-if($error){
+
+if ($error) {
     Redirect::redirect(
         message: $error,
         type: 'warning'
@@ -47,9 +46,10 @@ if($error){
     $provider = new Provider(
         cnpj: $_POST['cnpj'],
         name: $_POST['name'],
-        phone: $_POST['phone'], 
+        phone: $_POST['phone'],
         address: new Address(
             publicPlace: $_POST['publicPlace'],
+            streetName: $_POST['streetName'],
             numberOfStreet: $_POST['numberOfStreet'],
             complement: $_POST['complement'],
             neighborhood: $_POST['neighborhood'],
@@ -57,8 +57,26 @@ if($error){
             zipCode: $_POST['zipCode']
         )
     );
-    Redirect::redirect(
-        message: "O fornecedor $name foi cadastrado com sucesso!"
-    );
-}
 
+    //TODO Cadastrar no banco de dados
+    try {
+        $dao = new ProviderDAO();
+        $dao2 = new AddressDAO();
+        $result = $dao->insert($provider);        
+        if ($result) {
+            Redirect::redirect(
+                message: "O fornecedor $name foi cadastrado com sucesso!"
+            );
+        } else {
+            Redirect::redirect(
+                message: "Lamento, não foi possivel cadastrar o fornecedor $name foi cadastrado com sucesso!",
+                type: 'erro'
+            );
+        }
+    } catch (PDOException $e) {
+        Redirect::redirect(
+            message: "Houve um erro inesperado!",
+            type: 'error'
+        );
+    }
+}

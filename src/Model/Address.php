@@ -3,15 +3,17 @@ namespace APP\Model;
 
 class Address{
     private string $publicPlace;
+    private string $streetName;
     private string $numberOfStreet;
     private string $complement;
     private string $neighborhood;
     private string $city;
     private string $zipCode;
 
-    public function __construct(string $publicPlace, string $numberOfStreet, string $complement, string $neighborhood, string $city, string $zipCode)
+    public function __construct(string $publicPlace,string $streetName, string $numberOfStreet, string $complement, string $neighborhood, string $city, string $zipCode)
     {
         $this->publicPlace = $publicPlace;
+        $this->streetNAme = $streetName;
         $this->numberOfStreet = $numberOfStreet;
         $this->complement = $complement;
         $this->neighborhood = $neighborhood;
