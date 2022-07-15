@@ -60,18 +60,23 @@ if ($error) {
 
     //TODO Cadastrar no banco de dados
     try {
-        $dao = new ProviderDAO();
-        $dao2 = new AddressDAO();
-        $result = $dao->insert($provider);        
+        $dao = new AddressDAO();
+        $result = $dao->insert($provider->address);
         if ($result) {
-            Redirect::redirect(
-                message: "O fornecedor $name foi cadastrado com sucesso!"
-            );
-        } else {
-            Redirect::redirect(
-                message: "Lamento, não foi possivel cadastrar o fornecedor $name foi cadastrado com sucesso!",
-                type: 'erro'
-            );
+            $addressCode = $dao->findId();
+            
+            $dao = new ProviderDAO();
+            $result = $dao->insert($provider);
+            if ($result) {
+                Redirect::redirect(
+                    message: "O fornecedor $name foi cadastrado com sucesso!"
+                );
+            } else {
+                Redirect::redirect(
+                    message: "Lamento, não foi possivel cadastrar o fornecedor $name foi cadastrado com sucesso!",
+                    type: 'erro'
+                );
+            }
         }
     } catch (PDOException $e) {
         Redirect::redirect(

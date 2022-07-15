@@ -2,6 +2,7 @@
 namespace APP\Model\DAO;
 
 use APP\Model\Connection;
+use PDO;
 
 class AddressDAO implements DAO{
 
@@ -25,4 +26,11 @@ class AddressDAO implements DAO{
     public function update($object){}
 
     public function delete($id){}
+
+    public function findId()
+    {
+        $connection = Connection::getConnection();
+        $result = $connection->query("SELECT max(address_code) as id FROM address;");
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
 }

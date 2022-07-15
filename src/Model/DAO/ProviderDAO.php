@@ -8,7 +8,7 @@ class ProviderDAO implements DAO{
 
     public function insert($object){
         $connection = Connection::getConnection();
-        $stmt = $connection->prepare("INSERT INTO provider VALUES (null,?,?,?);");
+        $stmt = $connection->prepare("INSERT INTO provider VALUES (null,?,?,?,1);");
         $stmt->bindParam(1, $object->cnpj);
         $stmt->bindParam(2, $object->name);
         $stmt->bindParam(3, $object->phone);

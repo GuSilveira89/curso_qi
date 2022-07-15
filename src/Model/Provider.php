@@ -4,6 +4,7 @@ namespace APP\Model;
 
 class Provider
 {
+    private int $id;
     private string $cnpj;
     private string $name;
     private ?string $phone;
