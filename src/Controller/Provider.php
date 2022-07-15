@@ -63,8 +63,8 @@ if ($error) {
         $dao = new AddressDAO();
         $result = $dao->insert($provider->address);
         if ($result) {
-            $addressCode = $dao->findId();
-            
+            $provider->address->id = $dao->findId();
+
             $dao = new ProviderDAO();
             $result = $dao->insert($provider);
             if ($result) {
