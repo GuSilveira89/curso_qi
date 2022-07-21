@@ -11,8 +11,8 @@ use PDOException;
 
 require '../../vendor/autoload.php';
 
-if (empty($_GET['operation'])) {
-    Redirect::redirect(message: 'Nenhuma operação foi enviada', type: 'error');
+if (!isset($_GET['operation'])) {
+    Redirect::redirect(message: 'Nenhuma operação foi enviada!!!', type: 'error');
 }
 
 switch ($_GET['operation']) {
@@ -32,7 +32,7 @@ switch ($_GET['operation']) {
         editProduct();
         break;
     default:
-        Redirect::redirect(message: 'A operação informada é inválida!!', type: 'error');
+        Redirect::redirect(message: 'A operação informada é inválida!!!', type: 'error');
 }
 
 function insertProduct()
@@ -40,7 +40,10 @@ function insertProduct()
     if (empty($_POST)) {
         session_start();
         // Redirecionar o usuário
-        Redirect::redirect(type: 'error', message: 'Requisição inválida!!!');
+        Redirect::redirect(
+            type: 'error',
+            message: 'Requisição inválida!!!'
+        );
     }
 
     $productName = $_POST["name"];
@@ -69,7 +72,10 @@ function insertProduct()
     }
 
     if ($error) {
-        Redirect::redirect(message: $error, type: 'warning');
+        Redirect::redirect(
+            message: $error,
+            type: 'warning'
+        );
     } else {
         $product = new Product(
             tax: 0.2,
@@ -83,27 +89,19 @@ function insertProduct()
                 name: "Fornecedor Padrão"
             )
         );
-
-        //TODO Cadastrar no banco de dados
         try {
             $dao = new ProductDAO();
             $result = $dao->insert($product);
             if ($result) {
                 Redirect::redirect(
-                    message: "O produto $productName foi cadastrado com sucesso!"
+                    message: "O produto $productName foi cadastrado com sucesso!!!"
                 );
             } else {
-                Redirect::redirect(
-                    message: "Lamento, não foi possivel cadastrar o produto $productName",
-                    type: 'error'
-                );
+                Redirect::redirect("Lamento, não foi possível cadastrar o produto $productName", type: 'error');
             }
         } catch (PDOException $e) {
-            // Redirect::redirect(message: "Houve um erro inesperado:" . $e->getMessage());
-            Redirect::redirect(
-                message: "Houve um erro inesperado!",
-                type: 'error'
-            );
+            // Redirect::redirect("Houve um erro inesperado:" . $e->getMessage(), type: 'error');
+            Redirect::redirect("Lamento, houve um erro inesperado!!!", type: 'error');
         }
     }
 }
@@ -118,39 +116,39 @@ function listProducts()
             $_SESSION['list_of_products'] = $products;
             header('location:../View/list_of_products.php');
         } else {
-            Redirect::redirect(message: 'Não existem produtos cadastrados!!', type: 'warning');
+            Redirect::redirect(message: ['Não existem produtos cadastrados!!!'], type: 'warning');
         }
     } catch (PDOException $e) {
-        Redirect::redirect(message: 'Lamento, houve um erro inesperado', type: 'error');
+        Redirect::redirect("Lamento, houve um erro inesperado!!!", type: 'error');
     }
 }
 
 function removeProduct()
 {
     if (empty($_GET['code'])) {
-        Redirect::redirect(message: 'O código do produto não foi informado!', type: 'error');
+        Redirect::redirect(message: 'O código do produto não foi informado!!!', type: 'error');
     }
 
-    $code = $_GET['code'];
+    $code = (float) $_GET['code'];
     $error = array();
 
     if (!Validation::validateNumber($code)) {
-        array_push($error, 'Código do produto inválido!');
+        array_push($error, 'Código do produto inválido!!!');
     }
 
     if ($error) {
         Redirect::redirect($error, type: 'warning');
     } else {
         try {
-            $dao = new ProductDAO;
+            $dao = new ProductDAO();
             $result = $dao->delete($code);
             if ($result) {
-                Redirect::redirect(message: 'Produto removido com sucesso!!');
+                Redirect::redirect(message: 'Produto removido com sucesso!!!');
             } else {
-                Redirect::redirect(message: ['Não foi possivel remover o prpduto!'], type: 'warning');
+                Redirect::redirect(message: ['Não foi possível remover o produto'], type: 'warning');
             }
         } catch (PDOException $e) {
-            Redirect::redirect('Lamento, houve um erro inesperado!!!', type: 'error');
+            Redirect::redirect("Lamento, houve um erro inesperado!!!", type: 'error');
         }
     }
 }
@@ -158,28 +156,28 @@ function removeProduct()
 function findProduct()
 {
     if (empty($_GET['code'])) {
-        Redirect::redirect(message: 'O código do produto não foi informado!', type: 'error');
+        Redirect::redirect(message: 'O código do produto não foi informado!!!', type: 'error');
     }
     $code = $_GET['code'];
     $dao = new ProductDAO();
     try {
         $result = $dao->findOne($code);
     } catch (PDOException $e) {
-        Redirect::redirect(message: 'Lamento, houve um erro inesperado!', type: 'error');
+        Redirect::redirect("Lamento, houve um erro inesperado!!!", type: 'error');
     }
     if ($result) {
         session_start();
         $_SESSION['product_info'] = $result;
         header("location:../View/form_edit_product.php");
     } else {
-        Redirect::redirect(message: 'Lamento,  não localizamos o produto em nossa base de dados', type: 'error');
+        Redirect::redirect(message: 'Lamento, não localizamos o produto em nossa base de dados', type: 'error');
     }
 }
 
 function editProduct()
 {
-    if(empty($_POST)){
-        Redirect::redirect(message: 'Requisição inválida!', type: 'error');
+    if (empty($_POST)) {
+        Redirect::redirect(message: 'Requisição inválida!!!', type: 'error');
     }
 
     $code = $_POST['code'];
@@ -188,11 +186,11 @@ function editProduct()
 
     $error = array();
 
-    if(!Validation::validateName($name)){
-        array_push($error, 'O nome do produto deve conter ao menos 3 caracteres!');
+    if (!Validation::validateName($name)) {
+        array_push($error, 'O nome do produto deve conter ao menos 3 caracteres!!!');
     }
-    if(!Validation::validateNumber($quantity)){
-        array_push($error, 'A quantidade em estoque deve ser superior a zero!');
+    if (!Validation::validateNumber($quantity)) {
+        array_push($error, 'A quantidade em estoque deve ser superior a zero!!!');
     }
 
     $product = new Product(
@@ -204,14 +202,19 @@ function editProduct()
         name: $name,
         provider: new Provider(
             cnpj: '00000/0001',
-            name: "Fornecedor padrão"
-        )
+            name: "Fornecedor Padrão"
+        ),
+        id: $code
     );
     $dao = new ProductDAO();
-    $result = $dao->update($product);
-    if($result){
-        Redirect::redirect(message: 'Produto atualizado com sucesso!');
+    try {
+        $result = $dao->update($product);
+    } catch (PDOException $e) {
+        Redirect::redirect("Lamento, houve um erro inesperado!!!", type: 'error');
+    }
+    if ($result) {
+        Redirect::redirect(message: 'Produto atualizado com sucesso!!!');
     } else {
-        Redirect::redirect(message: ['Não foi possível atualizar os dados do produto!!']);
+        Redirect::redirect(message: ['Não foi possível atualizar os dados do produto!!!']);
     }
 }

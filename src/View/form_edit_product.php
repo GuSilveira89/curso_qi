@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Loja de varejo - Editar de produtos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <nav class="bg-blue-400">
         <ul>
@@ -21,9 +23,6 @@
             </li>
             <li class="inline">
                 <a href="../Controller/Product.php?operation=list">Listar produtos</a>
-            </li>
-            <li class="inline">
-                <a href="../Controller/Provider.php?operation=list">Listar fornecedores</a>
             </li>
         </ul>
     </nav>
@@ -41,8 +40,8 @@
                     <input type="text" id="name" name="name" class="border border-blue-400" required minlength="5" value="<?= $product['product_name'] ?>">
                 </article>
                 <article>
-                    <label for="cost">Preço de custo</label>
-                    <input type="text" id="cost" name="cost" class="border border-blue-400" required min="1" max="1000" value="<?= $product['product_price'] ?>">
+                    <label for="sale">Preço de venda</label>
+                    <input type="text" id="sale" name="sale" class="border border-blue-400" required min="1" max="1000" value="<?= $product['product_price'] ?>" disabled>
                 </article>
             </section>
             <section class="mt-4 columns-2">
@@ -55,12 +54,12 @@
                     <select name="provider" id="provider">
                         <option value="1">Fornecedor 1</option>
                         <option value="2">Fornecedor 2</option>
-                        <option value="3">Fornecedor 4</option>
+                        <option value="3">Fornecedor 3</option>
                     </select>
                 </article>
             </section>
             <article class="flex justify-center mt-4">
-                <button type="submit" class="p-4 text-white bg-blue-700 rounded">Cadastrar</button>
+                <button type="submit" class="p-4 text-white bg-blue-700 rounded">Salvar</button>
             </article>
         </fieldset>
     </form>
