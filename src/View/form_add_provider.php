@@ -10,10 +10,29 @@
 </head>
 
 <body>
+<nav class="bg-blue-400">
+        <ul>
+            <li class="inline">
+                <a href="../../index.html">Home</a>
+            </li>
+            <li class="inline">
+                <a href="form_add_product.php">Novo produto</a>
+            </li>
+            <li class="inline">
+                <a href="#">Novo fornecedor</a>
+            </li>
+            <li class="inline">
+                <a href="../Controller/Product.php?operation=list">Listar produtos</a>
+            </li>
+            <li class="inline">
+                <a href="../Controller/Provider.php?operation=list">Listar fornecedores</a>
+            </li>
+        </ul>
+    </nav>
     <fieldset class="p-4 m-5 border border-blue-400">
         <legend>Cadastro de Fornecedor</legend>
 
-        <form action="../Controller/Provider.php" method="POST">
+        <form action="../Controller/Provider.php?operation=insert" method="POST">
             <fieldset class="p-4 m-4 border border-blue-400">
                 <legend>Dados do Fornecedor</legend>
                 <section class="columns-2">
@@ -36,17 +55,17 @@
                 <section class="columns-2">
                     <article>
                         <label for="publicPlace">Logradouro</label>
-                        <input type="text" id="publicPlace" name="publicPlace" class="border border-blue-400" >
+                        <input type="text" id="publicPlace" name="publicPlace" class="border border-blue-400">
                     </article>
                     <article>
                         <label for="streetName">Rua</label>
-                        <input type="text" id="streetName" name="streetName" class="border border-blue-400" >
+                        <input type="text" id="streetName" name="streetName" class="border border-blue-400">
                     </article>
                 </section>
                 <section class="columns-2">
                     <article>
                         <label for="numberOfStreet">Número</label>
-                        <input type="text" id="numberOfStreet" name="numberOfStreet" class="border border-blue-400" >
+                        <input type="text" id="numberOfStreet" name="numberOfStreet" class="border border-blue-400">
                     </article>
                     <article>
                         <label for="complement">Complemento</label>
@@ -66,7 +85,7 @@
                 <section class="columns-2">
                     <article>
                         <label for="zipCode">CEP</label>
-                        <input type="text" id="zipCode" name="zipCode" class="border border-blue-400" >
+                        <input type="text" id="zipCode" name="zipCode" class="border border-blue-400">
                     </article>
                 </section>
             </fieldset>
