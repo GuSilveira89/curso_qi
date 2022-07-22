@@ -13,7 +13,7 @@
     <?php
     session_start();
     if (empty($_SESSION)) {
-        header("location:../../index.html");
+        header("location:dashboard.php");
     }
     ?>
     <main class="flex items-center justify-center" style="height: 100vh;">
