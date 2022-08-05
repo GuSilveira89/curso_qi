@@ -15,7 +15,7 @@
             <a href="../../index.html">Home</a>
           </li>
           <li class="inline">
-            <a href="form_add_product.php">Novo produto</a>
+            <a href="form_add_filme.php">Novo filme</a>
           </li>
           <li class="inline">
             <a href="form_add_provider.php">Novo fornecedor</a>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de produtos</title>
+    <title>Lista de Filmes</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -16,7 +16,7 @@
                 <a href="dashboard.php">Home</a>
             </li>
             <li class="inline">
-                <a href="form_add_product.php">Novo produto</a>
+                <a href="form_add_filme.php">Novo Filme</a>
             </li>
             <li class="inline">
                 <a href="form_add_provider.php">Novo fornecedor</a>
@@ -26,36 +26,43 @@
             </li>
         </ul>
     </nav>
-    <h1 class="my-4 text-3xl font-bold text-center text-blue-800">Lista de produtos cadastrados</h1>
+    <h1 class="my-4 text-3xl font-bold text-center text-blue-800">Lista de Filmes</h1>
     <table class="m-auto">
         <thead class="text-white bg-blue-400">
             <th>#</th>
-            <th>Nome do produto</th>
-            <th>Preço do produto</th>
+            <th>Nome do filme</th>
+            <th>Ano de Lançamento</th>
             <th>Quantidade em estoque</th>
-            <th>Ações</th>
+            <th>Seção</th>
+            <th>Faixa Etária</th>
         </thead>
         <tbody>
             <?php
             session_start();
-            foreach ($_SESSION['list_of_products'] as $product) :
+            foreach ($_SESSION['lista_de_filmes'] as $filme) :
             ?>
                 <tr>
                     <td>
-                        <?= $product['product_code'] ?>
+                        <?= $filme['filme_id'] ?>
                     </td>
                     <td>
-                        <?= $product['product_name'] ?>
+                        <?= $filme['filme_nome'] ?>
+                    </td>                    
+                    <td>
+                        <?= $filme['filme_ano'] ?>
                     </td>
                     <td>
-                        R$ <?= str_replace(".", ",", $product['product_price']) ?>
+                        <?= $filme['filme_quantidade'] ?>
                     </td>
                     <td>
-                        <?= $product['product_quantity'] ?>
+                        <?= $filme['filme_secao'] ?>
                     </td>
                     <td>
-                        <a href="../Controller/Product.php?operation=find&code=<?= $product["product_code"] ?>">Editar</a>
-                        <a href="../Controller/Product.php?operation=remove&code=<?= $product["product_code"] ?>">Remover</a>
+                        <?= $filme['filme_faixa'] ?>
+                    </td>
+                    <td>
+                        <a href="../Controller/Filme.php?operation=find&code=<?= $filme["filme_id"] ?>">Editar</a>
+                        <a href="../Controller/Filme.php?operation=remove&code=<?= $filme["filme_id"] ?>">Remover</a>
                     </td>
                 </tr>
             <?php
