@@ -42,26 +42,26 @@
                 <article>
                     <label for="secao">Seção</label>
                     <select name="secao" id="secao">
-                        <option value="1">Ação</option>
-                        <option value="2">Adulto</option>
-                        <option value="3">Aventura</option>
-                        <option value="4">Comédia</option>
-                        <option value="5">Comédia Romântica</option>
-                        <option value="6">Drama</option>
-                        <option value="7">Infantil</option>
-                        <option value="8">Ficção Cientifica</option>
-                        <option value="9">Terror</option>
+                        <option value="Ação">Ação</option>
+                        <option value="Adulto">Adulto</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Comédia">Comédia</option>
+                        <option value="Comédia Romântica">Comédia Romântica</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Infantil">Infantil</option>
+                        <option value="Ficção Cientifica">Ficção Cientifica</option>
+                        <option value="Terror">Terror</option>
                     </select>
                 </article>
                 <article>
                     <label for="faixa_etaria">Faixa Etária</label>
                     <select name="faixa_etaria" id="faixa_etaria">
-                        <option value="1">Livre</option>
-                        <option value="2">Impróprio para menores de 10 anos</option>
-                        <option value="3">Impróprio para menores de 12 anos</option>
-                        <option value="4">Impróprio para menores de 14 anos</option>
-                        <option value="5">Impróprio para menores de 16 anos</option>
-                        <option value="6">Impróprio para menores de 18 anos</option>
+                        <option value="Livre">Livre</option>
+                        <option value="Impróprio para menores de 10 anos">Impróprio para menores de 10 anos</option>
+                        <option value="Impróprio para menores de 12 anos">Impróprio para menores de 12 anos</option>
+                        <option value="Impróprio para menores de 14 anos">Impróprio para menores de 14 anos</option>
+                        <option value="Impróprio para menores de 16 anos">Impróprio para menores de 16 anos</option>
+                        <option value="Impróprio para menores de 18 anos">Impróprio para menores de 18 anos</option>
                     </select>
                 </article>
             </section>
