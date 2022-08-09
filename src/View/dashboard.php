@@ -18,13 +18,7 @@
             <a href="form_add_filme.php">Novo filme</a>
           </li>
           <li class="inline">
-            <a href="form_add_provider.php">Novo fornecedor</a>
-          </li>
-          <li class="inline">
-            <a href="../Controller/Product.php?operation=list">Listar produtos</a>
-          </li>
-          <li class="inline">
-            <a href="../Controller/Provider.php?operation=list">Listar fornecedores</a>
+            <a href="../Controller/Filme.php?operation=list">Listar filmes</a>
           </li>
           <li class="inline">
             <a href="../Controller/User.php?operation=logout">Sair</a>

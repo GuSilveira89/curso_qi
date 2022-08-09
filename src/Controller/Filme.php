@@ -4,7 +4,6 @@ namespace APP\Controller;
 
 use APP\Model\DAO\FilmeDAO;
 use APP\Model\Filme;
-use APP\Model\Provider;
 use APP\Utils\Redirect;
 use APP\Model\Validation;
 use PDOException;
@@ -47,10 +46,10 @@ function inserirFilme()
     }
 
     $nome = $_POST["nome"];
-    $ano =  $_POST["ano"];
-    $quantidade = $_POST["quantidade"];
+    $ano =  $_POST["ano"];    
     $secao = $_POST["secao"];
     $faixa_etaria = $_POST["faixa_etaria"];
+    $quantidade = $_POST["quantidade"];
 
     $error = array();
 
@@ -109,7 +108,7 @@ function listarFilmes()
         $dao = new FilmeDAO();
         $filmes = $dao->findAll();
         if ($filmes) {
-            $_SESSION['lista_de_filmes'] = $filmes;
+            $_SESSION['list_of_filmes'] = $filmes;
             header('location:../View/list_of_filmes.php');
         } else {
             Redirect::redirect(message: ['Não existem filmes cadastrados!!!'], type: 'warning');
@@ -122,11 +121,11 @@ function listarFilmes()
 function removerFilmes()
 {
     //não mexi nos 'code'
-    if (empty($_GET['code'])) {
+    if (empty($_GET['id'])) {
         Redirect::redirect(message: 'O código do produto não foi informado!!!', type: 'error');
     }
 
-    $code = (float) $_GET['code'];
+    $code = (float) $_GET['id'];
     $error = array();
 
     if (!Validation::validateNumber($code)) {
@@ -153,10 +152,10 @@ function removerFilmes()
 function procurarFilme()
 {
     //não mexi nos 'code'
-    if (empty($_GET['code'])) {
+    if (empty($_GET['id'])) {
         Redirect::redirect(message: 'O código do fillme não foi informado!!!', type: 'error');
     }
-    $code = $_GET['code'];
+    $code = $_GET['id'];
     $dao = new FilmeDAO();
     try {
         $result = $dao->findOne($code);
@@ -178,28 +177,29 @@ function editarFilme()
         Redirect::redirect(message: 'Requisição inválida!!!', type: 'error');
     }
 
-    $code = $_POST['code'];
-    $filmeNome = $_POST["nome"];
-    $filmeAno =  $_POST["ano"];
-    $filmeQuantidade = $_POST["quantidade"];
-    $filmeSecao = $_POST["secao"];
-    $filmeFaixa_etaria = $_POST["faixa_etaria"];
+    $id = $_POST['id'];
+    $nome = $_POST["nome"];
+    $ano =  $_POST["ano"];
+    $quantidade = $_POST["quantidade"];
+    $secao = $_POST["secao"];
+    $faixa_etaria = $_POST["faixa_etaria"];
 
     $error = array();
 
-    if (!Validation::validateName($filmeNome)) {
+    if (!Validation::validateName($nome)) {
         array_push($error, 'O nome do filme deve conter ao menos 2 caracteres!!!');
     }
-    if (!Validation::validateNumber($filmeQuantidade)) {
+    if (!Validation::validateNumber($quantidade)) {
         array_push($error, 'A quantidade em estoque deve ser superior a zero!!!');
     }
 
     $filme = new Filme(
-        nome: $filmeNome,
-        ano: $filmeAno,
-        quantidade: $filmeQuantidade,
-        secao: $filmeSecao,
-        faixa_etaria: $filmeFaixa_etaria            
+        nome: $nome,
+        ano: $ano,
+        quantidade: $quantidade,
+        secao: $secao,
+        faixa_etaria: $faixa_etaria,  
+        id : $id         
     );
     $dao = new FilmeDAO();
     try {

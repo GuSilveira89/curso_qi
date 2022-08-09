@@ -5,27 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locadora Kikito de ouro - Cadastro de filme</title>
+    <title>Locadora Kikito de ouro - Alteração de filme</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
     <nav class="bg-blue-400">
         <ul>
             <li class="inline">
                 <a href="dashboard.php">Página Inicial</a>
             </li>
             <li class="inline">
-                <a href="#">Novo Filme</a>
+                <a href="form_add_filme.php">Novo Filme</a>
             </li>
             <li class="inline">
-                <a href="../Controller/Filme.php?operation=list">Lista de Filmes</a>
+                <a href="../Controller/Filme.php?operation=list">Listar filmes</a>
             </li>
         </ul>
     </nav>
-
-    <form action="../Controller/Filme.php?operation=insert" method="POST">
+    <?php
+    session_start();
+    $filme = $_SESSION['filme_info'];
+    ?>
+    <form action="../controller/Filme.php?operation=edit" method="POST">
+        <input type="hidden" name="filme_id" value="<?= $filme['filme_id'] ?>">
         <fieldset class="p-4 m-5 border border-blue-400">
             <legend>Dados do Filme</legend>
             <section class="mt-4 columns-2">

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Filmes</title>
+    <title>Locadora Kikito de ouro - Lista de Filmes</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -19,10 +19,7 @@
                 <a href="form_add_filme.php">Novo Filme</a>
             </li>
             <li class="inline">
-                <a href="form_add_provider.php">Novo fornecedor</a>
-            </li>
-            <li class="inline">
-                <a href="../Controller/Product.php?operation=list">Listar produtos</a>
+                <a href="#">Listar filmes</a>
             </li>
         </ul>
     </nav>
@@ -35,11 +32,12 @@
             <th>Quantidade em estoque</th>
             <th>Seção</th>
             <th>Faixa Etária</th>
+            <th>Ações</th>
         </thead>
         <tbody>
             <?php
             session_start();
-            foreach ($_SESSION['lista_de_filmes'] as $filme) :
+            foreach ($_SESSION['list_of_filmes'] as $filme) :
             ?>
                 <tr>
                     <td>
@@ -58,7 +56,7 @@
                         <?= $filme['filme_secao'] ?>
                     </td>
                     <td>
-                        <?= $filme['filme_faixa'] ?>
+                        <?= $filme['filme_faixa_etaria'] ?>
                     </td>
                     <td>
                         <a href="../Controller/Filme.php?operation=find&code=<?= $filme["filme_id"] ?>">Editar</a>
