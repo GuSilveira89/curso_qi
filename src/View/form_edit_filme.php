@@ -37,17 +37,17 @@
             <section class="mt-4 columns-2">
                 <article>
                     <label for="nome">Nome do Filme</label>
-                    <input type="text" id="nome" name="nome" class="border border-blue-400" required minlength="2">
+                    <input type="text" id="nome" name="nome" class="border border-blue-400" required minlength="2" value="<?= $filme['filme_nome'] ?>">
                 </article>
                 <article>
                     <label for="ano">Ano de Lançamento</label>
-                    <input type="number" id="ano" name="ano" class="border border-blue-400">
+                    <input type="number" id="ano" name="ano" class="border border-blue-400" value="<?= $filme['filme_ano'] ?>">
                 </article>
             </section>
             <section class="mt-4 columns-2">
                 <article>
                     <label for="secao">Seção</label>
-                    <select name="secao" id="secao">
+                    <select name="secao" id="secao" value="<?= $filme['filme_secao'] ?>">
                         <option value="Ação">Ação</option>
                         <option value="Adulto">Adulto</option>
                         <option value="Aventura">Aventura</option>
@@ -61,7 +61,7 @@
                 </article>
                 <article>
                     <label for="faixa_etaria">Faixa Etária</label>
-                    <select name="faixa_etaria" id="faixa_etaria">
+                    <select name="faixa_etaria" id="faixa_etaria" value="<?= $filme['filme_faixa_etaria'] ?>">
                         <option value="Livre">Livre</option>
                         <option value="Impróprio para menores de 10 anos">Impróprio para menores de 10 anos</option>
                         <option value="Impróprio para menores de 12 anos">Impróprio para menores de 12 anos</option>
@@ -74,7 +74,7 @@
             <section class="mt-4 columns-2">
                 <article>
                     <label for="quantidade">Quantidade no estoque</label>
-                    <input type="number" id="quantidade" name="quantidade" class="border border-blue-400" req>
+                    <input type="number" id="quantidade" name="quantidade" class="border border-blue-400" value="<?= $filme['filme_quantidade'] ?>">
                 </article>
             </section>
 

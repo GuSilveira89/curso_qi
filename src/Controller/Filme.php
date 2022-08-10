@@ -199,7 +199,7 @@ function editarFilme()
 
     $filme = new Filme(
         nome: $nome,
-        ano:$ano,
+        ano: $ano,
         quantidade: $quantidade,        
         secao: $secao,
         faixa_etaria: $faixa_etaria,

@@ -5,15 +5,15 @@ namespace APP\Model;
 class Filme
 {
     private string $nome;
-    private string $ano;
+    private int $ano;
     private int $quantidade;
     private string $secao;
     private string $faixa_etaria;    
 
     public function __construct(
         string $nome,
-        string $ano,
-        string $quantidade,
+        int $ano,
+        int $quantidade,
         string $secao,
         string $faixa_etaria,
         int $id=0
