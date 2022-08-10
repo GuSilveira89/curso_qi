@@ -39,6 +39,7 @@ class FilmeDAO implements DAO
         $stmt->bindParam(3, $object->quantidade);
         $stmt->bindParam(4, $object->secao);
         $stmt->bindParam(5, $object->faixa_etaria);
+        $stmt->bindParam(6, $object->id);
         return $stmt->execute();
     }
     public function delete($id)

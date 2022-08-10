@@ -48,14 +48,14 @@
                 <article>
                     <label for="secao">Seção</label>
                     <select name="secao" id="secao" value="<?= $filme['filme_secao'] ?>">
-                        <option value="Ação">Ação</option>
+                        <option value="Ação">Acao</option>
                         <option value="Adulto">Adulto</option>
                         <option value="Aventura">Aventura</option>
-                        <option value="Comédia">Comédia</option>
-                        <option value="Comédia Romântica">Comédia Romântica</option>
+                        <option value="Comédia">Comedia</option>
+                        <option value="Comédia Romântica">Comedia Romantica</option>
                         <option value="Drama">Drama</option>
                         <option value="Infantil">Infantil</option>
-                        <option value="Ficção Cientifica">Ficção Cientifica</option>
+                        <option value="Ficção Cientifica">Ficcao Cientifica</option>
                         <option value="Terror">Terror</option>
                     </select>
                 </article>
@@ -63,11 +63,11 @@
                     <label for="faixa_etaria">Faixa Etária</label>
                     <select name="faixa_etaria" id="faixa_etaria" value="<?= $filme['filme_faixa_etaria'] ?>">
                         <option value="Livre">Livre</option>
-                        <option value="Impróprio para menores de 10 anos">Impróprio para menores de 10 anos</option>
-                        <option value="Impróprio para menores de 12 anos">Impróprio para menores de 12 anos</option>
-                        <option value="Impróprio para menores de 14 anos">Impróprio para menores de 14 anos</option>
-                        <option value="Impróprio para menores de 16 anos">Impróprio para menores de 16 anos</option>
-                        <option value="Impróprio para menores de 18 anos">Impróprio para menores de 18 anos</option>
+                        <option value="Impróprio para menores de 10 anos">Improprio para menores de 10 anos</option>
+                        <option value="Impróprio para menores de 12 anos">Improprio para menores de 12 anos</option>
+                        <option value="Impróprio para menores de 14 anos">Improprio para menores de 14 anos</option>
+                        <option value="Impróprio para menores de 16 anos">Improprio para menores de 16 anos</option>
+                        <option value="Impróprio para menores de 18 anos">Improprio para menores de 18 anos</option>
                     </select>
                 </article>
             </section>

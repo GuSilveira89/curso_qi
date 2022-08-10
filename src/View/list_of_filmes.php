@@ -28,14 +28,14 @@
     </nav>
     <h1 class="my-4 text-3xl font-bold text-center text-blue-800">Lista de Filmes</h1>
     <table class="m-auto">
-        <thead class="text-white bg-blue-400">
-            <th>#</th>
-            <th>Nome do filme</th>
-            <th>Ano de Lançamento</th>
-            <th>Quantidade em estoque</th>
-            <th>Seção</th>
-            <th>Faixa Etária</th>
-            <th>Ações</th>
+        <thead class="border-slate-500 text-white bg-blue-400">
+            <th class="border border-slate-600">#</th>
+            <th class="border border-slate-600">Nome do filme</th>
+            <th class="border border-slate-600">Ano de Lançamento</th>
+            <th class="border border-slate-600">Quantidade em estoque</th>
+            <th class="border border-slate-600">Seção</th>
+            <th class="border border-slate-600">Faixa Etária</th>
+            <th class="border border-slate-600">Ações</th>
         </thead>
         <tbody>
             <?php
@@ -43,25 +43,25 @@
             foreach ($_SESSION['list_of_filmes'] as $filme) :
             ?>
                 <tr>
-                    <td>
+                    <td class="border border-slate-600">
                         <?= $filme['filme_id'] ?>
                     </td>
-                    <td>
+                    <td class="border border-slate-600">
                         <?= $filme['filme_nome'] ?>
                     </td>                    
-                    <td>
+                    <td class="border border-slate-600">
                         <?= $filme['filme_ano'] ?>
                     </td>
-                    <td>
+                    <td class="border border-slate-600">
                         <?= $filme['filme_quantidade'] ?>
                     </td>
-                    <td>
+                    <td class="border border-slate-600">
                         <?= $filme['filme_secao'] ?>
                     </td>
-                    <td>
+                    <td class="border border-slate-600">
                         <?= $filme['filme_faixa_etaria'] ?>
                     </td>
-                    <td>
+                    <td class="border border-slate-600">
                         <a href="../Controller/Filme.php?operation=find&code=<?= $filme["filme_id"] ?>">Editar</a>
                         <a href="../Controller/Filme.php?operation=remove&code=<?= $filme["filme_id"] ?>">Remover</a>
                     </td>
