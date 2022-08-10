@@ -13,14 +13,17 @@
     <nav class="bg-blue-400">
         <ul>
             <li class="inline">
-                <a href="dashboard.php">Home</a>
+                <a href="dashboard.php">Página Inicial</a>
             </li>
             <li class="inline">
                 <a href="form_add_filme.php">Novo Filme</a>
             </li>
             <li class="inline">
-                <a href="#">Listar filmes</a>
+                <a href="#">Listar Filmes</a>
             </li>
+            <li class="inline">
+            <a href="../Controller/User.php?operation=logout">Sair</a>
+          </li>
         </ul>
     </nav>
     <h1 class="my-4 text-3xl font-bold text-center text-blue-800">Lista de Filmes</h1>

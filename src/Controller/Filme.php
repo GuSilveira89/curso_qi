@@ -121,11 +121,11 @@ function listarFilmes()
 function removerFilmes()
 {
     //não mexi nos 'code'
-    if (empty($_GET['id'])) {
+    if (empty($_GET['code'])) {
         Redirect::redirect(message: 'O código do produto não foi informado!!!', type: 'error');
     }
 
-    $code = (float) $_GET['id'];
+    $code = (float) $_GET['code'];
     $error = array();
 
     if (!Validation::validateNumber($code)) {
@@ -151,11 +151,10 @@ function removerFilmes()
 
 function procurarFilme()
 {
-    //não mexi nos 'code'
-    if (empty($_GET['id'])) {
-        Redirect::redirect(message: 'O código do fillme não foi informado!!!', type: 'error');
+    if (empty($_GET['code'])) {
+        Redirect::redirect(message: 'O código do filme não foi informado!!!', type: 'error');
     }
-    $code = $_GET['id'];
+    $code = $_GET['code'];
     $dao = new FilmeDAO();
     try {
         $result = $dao->findOne($code);
@@ -177,29 +176,34 @@ function editarFilme()
         Redirect::redirect(message: 'Requisição inválida!!!', type: 'error');
     }
 
-    $id = $_POST['id'];
-    $nome = $_POST["nome"];
-    $ano =  $_POST["ano"];
-    $quantidade = $_POST["quantidade"];
-    $secao = $_POST["secao"];
-    $faixa_etaria = $_POST["faixa_etaria"];
+    $code = $_POST['code'];
+    $nome = $_POST['nome'];
+    $ano = $_POST['ano'];
+    $quantidade = $_POST['quantidade'];
+    $secao = $_POST['secao'];
+    $faixa_etaria = $_POST['faixa_etaria'];
 
     $error = array();
 
     if (!Validation::validateName($nome)) {
-        array_push($error, 'O nome do filme deve conter ao menos 2 caracteres!!!');
+        array_push($error, 'O nome do produto deve conter ao menos 3 caracteres!!!');
     }
+
+    if (!Validation::validateNumber($ano)) {
+        array_push($error, 'O Ano de lançamento deve ser superior a zero!!!');
+    }
+
     if (!Validation::validateNumber($quantidade)) {
         array_push($error, 'A quantidade em estoque deve ser superior a zero!!!');
     }
 
     $filme = new Filme(
         nome: $nome,
-        ano: $ano,
-        quantidade: $quantidade,
+        ano:$ano,
+        quantidade: $quantidade,        
         secao: $secao,
-        faixa_etaria: $faixa_etaria,  
-        id : $id         
+        faixa_etaria: $faixa_etaria,
+        id: $code
     );
     $dao = new FilmeDAO();
     try {
@@ -210,6 +214,6 @@ function editarFilme()
     if ($result) {
         Redirect::redirect(message: 'Filme atualizado com sucesso!!!');
     } else {
-        Redirect::redirect(message: ['Não foi possível atualizar os dados do Filme!!!']);
+        Redirect::redirect(message: ['Não foi possível atualizar os dados do filme!!!']);
     }
 }

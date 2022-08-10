@@ -19,16 +19,19 @@
                 <a href="form_add_filme.php">Novo Filme</a>
             </li>
             <li class="inline">
-                <a href="../Controller/Filme.php?operation=list">Listar filmes</a>
+                <a href="../Controller/Filme.php?operation=list">Listar Filmes</a>
             </li>
+            <li class="inline">
+            <a href="../Controller/User.php?operation=logout">Sair</a>
+          </li>
         </ul>
     </nav>
     <?php
     session_start();
     $filme = $_SESSION['filme_info'];
     ?>
-    <form action="../controller/Filme.php?operation=edit" method="POST">
-        <input type="hidden" name="filme_id" value="<?= $filme['filme_id'] ?>">
+    <form action="../Controller/Filme.php?operation=edit" method="POST">
+        <input type="hidden" name="code" value="<?= $filme['filme_id'] ?>">
         <fieldset class="p-4 m-5 border border-blue-400">
             <legend>Dados do Filme</legend>
             <section class="mt-4 columns-2">
@@ -76,7 +79,7 @@
             </section>
 
             <article class="flex justify-center mt-4">
-                <button type="submit" class="p-4 text-white bg-blue-700 rounded">Cadastrar</button>
+                <button type="submit" class="p-4 text-white bg-blue-700 rounded">Salvar</button>
             </article>
         </fieldset>
     </form>

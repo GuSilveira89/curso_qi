@@ -12,13 +12,13 @@
     <nav class="bg-blue-400">
         <ul>
           <li class="inline">
-            <a href="../../index.html">Home</a>
+            <a href="../../index.html">Página Inicial</a>
           </li>
           <li class="inline">
-            <a href="form_add_filme.php">Novo filme</a>
+            <a href="form_add_filme.php">Novo Filme</a>
           </li>
           <li class="inline">
-            <a href="../Controller/Filme.php?operation=list">Listar filmes</a>
+            <a href="../Controller/Filme.php?operation=list">Listar Filmes</a>
           </li>
           <li class="inline">
             <a href="../Controller/User.php?operation=logout">Sair</a>

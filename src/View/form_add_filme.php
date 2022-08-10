@@ -20,8 +20,11 @@
                 <a href="#">Novo Filme</a>
             </li>
             <li class="inline">
-                <a href="../Controller/Filme.php?operation=list">Lista de Filmes</a>
+                <a href="../Controller/Filme.php?operation=list">Listar Filmes</a>
             </li>
+            <li class="inline">
+            <a href="../Controller/User.php?operation=logout">Sair</a>
+          </li>
         </ul>
     </nav>
 

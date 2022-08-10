@@ -21,13 +21,13 @@ class FilmeDAO implements DAO
     public function findOne($id)
     {
         $connection = Connection::getConnection();
-        $stmt = $connection->query('SELECT * FROM filme where filme_id = $id');
+        $stmt = $connection->query("SELECT * FROM filme WHERE filme_id = $id;");
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function findAll()
     {
         $connection = Connection::getConnection();
-        $stmt = $connection->query('SELECT * FROM filme;');
+        $stmt = $connection->query("select * from filme;");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function update($object)
@@ -44,7 +44,7 @@ class FilmeDAO implements DAO
     public function delete($id)
     {
         $connection = Connection::getConnection();
-        $stmt = $connection->prepare('DELETE from filme where filme_id = ?');
+        $stmt = $connection->prepare('DELETE from filme where filme_id = ?;');
         $stmt->bindParam(1, $id);
         return $stmt->execute();
     }
